@@ -455,7 +455,7 @@ Step3. 添加友情链接
 
 > 可以通过 `/link` 的方式访问到该友情链接页
 
-### 4. Butterfly - 主题配置
+### 4. Butterfly - 主题配置 1
 
 #### 4.1 _config.yml
 
@@ -471,11 +471,713 @@ language: zh-CN # 语言，Butterfly 主题关于该配置支持三种选项，e
 
 ##### 4.2.1 导航栏配置
 
-##### 4.2.2 1212
+```yaml
+nav: # 注意，这里的导航栏指的是网页顶层用于快速导航的区域
+  logo: "images/butterfly_nav_logo.svg" # （导航栏）logo，注意：这里的根目录是 /source/
+  display_title: true # （导航栏）是否显示网站标题，可选 true/false
+  fixed: false # （导航栏）是否固定，可选 true/false
 
-##### 4.2.3 121212
+# Menu (菜单设置)
+menu: # 注意，这里的菜单指的是导航栏右上角的快速导航
+  # 1. 菜单的语法必须是：/xxx/，后面 || 分开，然后写图标名。
+  # 2. Home 目录的解释为，其他类似
+  #  - Home 是目录名；/ 是点击该目录后跳转的链接地址；|| 是链接地址和图标的分隔符；
+  #  - fas fa-home 是 Font Awesome 图标库中的图标，fas 表示该图标库中的 solid 样式（实心），fa-home 表示该图标库中的房子图标类名
+  # Home: / || fas fa-home
+  # Archives: /archives/ || fas fa-archive
+  # Tags: /tags/ || fas fa-tags
+  # Categories: /categories/ || fas fa-folder-open
+  # List||fas fa-list:
+  #   Music: /music/ || fas fa-music
+  #   Movie: /movies/ || fas fa-video
+  # Link: /link/ || fas fa-link
+  # About: /about/ || fas fa-heart
+  首页: / || fas fa-home
+  时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  # 清单||fa fa-heartbeat:
+  #   音乐: /music/ || fas fa-music
+  #   照片: /Gallery/ || fas fa-images
+  #   电影: /movies/ || fas fa-video
+  友链: /link/ || fas fa-link
+  关于: /about/ || fas fa-heart
+```
+
+##### 4.2.2 代码块设置
+
+```yaml
+highlight_theme: mac # 代码主题高亮，可选 darker / pale night / light / ocean / mac / mac light / false，也可以尝试去自定义高亮
+highlight_copy: true # 是否显示复制按钮，即是否支持代码复制，可选 true/false
+highlight_lang: true # 是否显示代码语言，可选 true/false
+highlight_shrink: false # 是否支持代码块关闭，可选 true（代码块不展开，可以通过点击 '>' 展开）/ false（代码块展开，可以通过点击 '>' 关闭）/ none（代码块展开，同时隐藏 '>' 按钮）
+# 补充说明，主题文件中可以通过 highlight_shrink 设置是否支持代码块展开，同时也可以在文章的 front-matter 中通过 highlight_shrink 来单独进行设置，并优先级更高
+highlight_height_limit: 100 # 表示是否配置代码高度限制，超过部分会被隐藏。可选 number（单位是 px）/ false（不配置高度限制）
+# 补充说明：配置代码高度后，实际限制的高度是 highlight_height_limit + 30px
+code_word_wrap: false # 表示是否实现代码不自动换行，true 则不会让代码自动换行，从而不会在代码块区域中出现横向滚动条
+# 补充说明，如果设置代码不换行，即 code_word_wrap: true，此时还要进行以下设置
+# 如果 Hexo 正在使用 highlight 引擎渲染代码块，则需要修改站点配置 _config.yml 中的 highlight.line_number: false
+# 如果 Hexo 正在使用 prismjs 引擎渲染代码块，则需要修改站点配置 _config.yml 中的 prismjs.line_number: false
+```
+
+##### 4.2.3 社交图标设置
+
+```yaml
+formal: # 定义社交图标的格式为 图标名: url || 描述性文字 || color
+  icon: link || the description || color # icon 图标的 font awesome 类名；link 点击图标后的跳转链接；description 图标的悬停文本；color 十六进制表示的图标颜色
+social:
+  fab fa-github: https://github.com/Nasir1423 || Github || '#24292e' # github
+  fas fa-envelope: mailto:wangjian1423@foxmail.com || 邮箱 || '##1e3050' # 邮箱
+```
+
+##### 4.2.4 图片设置
+
+```yaml
+favicon: /images/butterfly_favicon.svg # Favicon (网站图标)
+avatar: # Avatar (头像)
+  img: /images/butterfly_avatar_img.svg
+  effect: false # 头像是否自动旋转，可选 true（旋转）/ false（不旋转）
+```
+
+##### 4.2.5 顶部图设置
+
+```yaml
+# 这里的设置涵盖：顶部图是否显示，默认顶部图，默认 tag 子页面顶部图，默认 category 子页面顶部图，
+# 主页顶部图，归档页顶部图，特定 tag 子页面顶部图，特定 category 子页面顶部图...
+disable_top_img: false # 是否禁用网页顶部图，可选 true / false
+# 补充说明：关于顶部图的获取顺序
+# 页面的顶部图（layout === page）时，各自配置的 top_img > 配置文件的 default_top_img
+# 文章的顶部图（layout === post）时，各自配置的 top_img > cover > 配置文件的 default_top_img
+
+index_img: images/Tartaglia/1219675.jpg # 主页的顶部图。注意：文章或页面可以通过 front-matter 的 top_img 配置对顶部图进行单独设置。
+
+default_top_img: "linear-gradient(to top, #2980b9, #6dd5fa, #ffffff);" # 默认的顶部图。当文章或页面没有通过 front-matter 的 top_img 设置顶部图时，则显示默认的顶部图。
+
+archive_img: # 归档页的顶部图。
+
+tag_img: # tag 子页面的的默认顶部图。如果 tag 子页面没有通过 top_img 设置顶部图，则显示默认的 tag 子页面的顶部图。
+# 补充说明：tag page, not tags page
+
+# The banner image of tag page
+# format:
+#  - tag name: xxxxx
+tag_per_img: # 为特定的 tag 子页面设置顶部图，即配置每个 tag 的顶部图。语法见上面的 format。
+
+category_img: # category 子页面的默认顶部图。如果 category 子页面没有通过 top_img 设置顶部图，则显示默认的 category 子页面的顶部图。
+# 补充说明：category page, not categories page
+
+# The banner image of category page
+# format:
+#  - category name: xxxxx
+category_per_img: # 为特定的 category 子页面设置顶部图，即配置每个 category 的顶部图。语法见上面的 format。
+
+# 补充说明：顶部图的可选值，即 xxx_yyy_image 类似字段的可选值（即设置的顶部图的可能的取值情况）
+# 1. 留空：如果是页面，则显示默认的 top_image，如果没有则显示默认的颜色；如果是文章页，则显示 cover 的值。
+# 2. 图片链接：表示显示所指定的图片
+# 3. 颜色：可选 HEX 值（如 #0000ff），RGB 值（如 rgb(0,0,255)），颜色单词（如 orange），渐变色（如 linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%)）
+# 4. transparent：表示透明
+# 5. false：表示不显示 top_img
+```
+
+##### 4.2.6 封面设置
+
+```yaml
+# 补充说明-1：这里用于设置文章的默认封面，对于特定的文章，可以通过 front-matter 的 cover 字段配置封面
+# 补充说明-2：封面的优先级为，front-matter 的 cover 字段 > 当前主题配置文件的 default_cover 字段 > false
+cover:
+  index_enable: true # 表示主页是否显示文章封面图
+  aside_enable: true # 表示侧栏是否显示文章封面图
+  archives_enable: true # 表示归档页面是否显示文章封面图
+  position: left # 表示主页卡片文章封面的显示位置，可选 left（左边）/ right（右边）/ both（左右轮流）
+  default_cover: # 表示默认的封面，可选图片链接，颜色，渐变色等
+  # 补充说明：如果要默认封面生效，需要在文章的 front-matter 的 cover 字段设置为空
+```
+
+##### 4.2.7 替换无法显示的图片设置
+
+```yaml
+error_img:
+  flink: /img/friend_404.gif # 友情链接页面加载失败时的默认替代图片
+  post_page: /img/404.jpg # 页面或文章图片加载失败时的默认替代图片
+```
+
+##### 4.2.8 自定义的 404 页面设置
+
+```yaml
+error_404:
+  enable: true # 是否启用自定义的 404 页面，可选 true / false
+  subtitle: "Page Not Found" # 404 页面的副标题文字
+  background: images/Other/1212121.svg # 404 页面的背景图片
+```
+
+##### 4.2.9 文章元信息设置
+
+```yaml
+post_meta:
+  page: # 主页元信息
+    date_type: created # 文章日期，可选 created（创建日期）/ updated（更新日期）/ both（都显示）
+    date_format: date # 文章日期格式，可选 date（日期）/ relative（绝对日期）
+    categories: true # 是否显示文章分类，可选 true / false
+    tags: false # 是否显示文章标签，可选 true / false
+    label: true # 是否显示描述性文字，可选 true / false
+  post: # 其他文章元信息，解释同上
+    date_type: both
+    date_format: date
+    categories: true
+    tags: true
+    label: true
+```
+
+##### 4.2.10 主页文章摘要显示设置
+
+```yaml
+index_post_content:
+  method: 3 # 表示主页中文章摘要的显示方式，可选 1 / 2 / 3 / false
+  # 补充说明：method 取值的具体含义
+  # 1 - description，即显示文章描述，即显示文章在自身的 front-matter 中配置的 description 字段作为文章摘要
+  # 2 - both，即优先显示 description，没有则显示自动生成的摘要
+  # 3 - auto_excerpt（默认值），即只显示自动生成的摘要
+  # false，即不显示文章摘要
+  length: 500 # 表示文章摘要的长度（即字符数），如果 method 配置取值为 2 或 3，则必须配置 length 字段
+```
+
+##### 4.2.11 页面锚点设置
+
+```yaml
+anchor:
+  # when you scroll, the URL will update according to header id.
+  auto_update: false # 表示 URL 是否会随着滚动自动更新为当前可见的标题（header）的 id
+  # Click the headline to scroll and update the anchor
+  click_to_scroll: true # 表示点击标题是否会使页面滚动到该标题位置，并更新 URL
+```
+
+##### 4.2.12 图片描述文字设置
+
+```yaml
+photofigcaption: false # 表示是否开启图片描述文字显示，true 则开启，false 则关闭。优先显示图片的 title 属性，然后是 alt 属性。
+```
+
+##### 4.2.13 复制设置
+
+```yaml
+copy:
+  enable: true # 表示是否开启网站的复制权限，可选 true / false
+  copyright:
+    enable: false # 表示是否在复制的内容后加上版权信息，可选 true / false，即 "来源: 川一土的博客视界 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"
+    limit_count: 50 # 字数限制，即当复制的文字大于该字数限制时，才在复制的内容后边加上版权信息
+```
+
+##### 4.2.14 文章页相关设置
+
+###### 文章版权
+
+```yaml
+post_copyright: # 文章版权，即为你的博客文章展示文章版权和许可协议
+  enable: true # 表示是否显示在文章页显示文章版权信息（包括作者、链接、版权声明、协议），可选 true / false
+  decode: false # 表示是否对网址进行解码，因此如果是中文网址，则可以设置 decode: true 来显示中文网址
+  author_href: https://github.com/Nasir1423 # 作者的链接
+  license: CC BY-NC-SA 4.0 # 版权声明中的协议
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/ # 协议的链接
+  # 补充说明 - 1：如果特定文章（如转载文章）不需要显示版权信息，则可以在文章的 front-matter 中设置 copyright: false
+  # 补充说明 - 2：可以支持对单独文章设置版权信息，即通过文章的 front-matter 中通过以下字段设置
+  # (1) copyright_author: xxx # 设置作者
+  # (2) copyright_author_url: https://xxx.com # 设置作者链接
+  # (3) copyright_url: https://xxx.com # 设置文章原始链接
+  # (4) copyright_info: 此文章版权归 xxxxx 所有，如有转载，请注明来自原作者 # 设置版权信息
+```
+
+###### 文章打赏
+
+```yaml
+reward: # 文章打赏
+  enable: false # 表示是否开启打赏按钮，可选 true / false
+  text: # 打赏按钮的文字，默认为 "赞助"
+  QR_code: # 打赏信息，每一项需要包含 img、link、text 三项
+    - img: /img/wechat.jpg # 打赏二维码
+      link: # 打赏链接，如果不写则默认为 img 的链接
+      text: wechat # 打赏文字
+    - img: /img/alipay.jpg
+      link:
+      text: alipay
+```
+
+###### 文章目录
+
+```yaml
+toc: # 文章目录，toc 是 table of content 的缩写
+  post: true # 表示文章页（layout === post）是否显示目录
+  page: false # 表示普通页面（layout === page）是否显示目录
+  number: true # 表示是否显示章节数，即是否显示 1.；1.3；5.1.3 等章节标识
+  expand: true # 表示是否展开目录
+  style_simple: true # 表示文章页（layout === post）的侧边栏是否打开简洁模式，即侧边栏只显示目录
+  scroll_percent: false # 表示是否显示滚动进度百分比
+  # 补充说明：可以通过 front-matter 中的特定字段 top_number 和 toc 为特定文章配置目录的显示情况
+```
+
+###### 相关文章推荐
+
+```yaml
+related_post: # 相关文章推荐
+  enable: true # 是否开启相关文章推荐
+  # 补充说明 - 1：相关文章推荐的原理是根据文章 tags 的比重来推荐文章
+  # 补充说明 - 2：如果被推荐的相关文章的 front-matter 中设置了 cover: false，那么相关文章的背景会显示主题色
+  limit: 6 # 相关推荐文章的数目
+  date_type: created # 被推荐的文章的日期类型，可选 created（创建日期）/ updated（更新日期）
+```
+
+###### 文章过期提醒
+
+```yaml
+noticeOutdate: # 文章过期提醒
+  # 补充说明：文章是否过期以更新时间为基准
+  enable: false # 表示是否开启文章过期提醒
+  style: flat # 过期提醒的风格，可选 simple / flat
+  limit_day: 500 # 表示距离更新时间多少天才显示文章过期提醒
+  position: top # 表示过期提醒显示的位置，可选 top / bottom
+  message_prev: It has been # 过期提醒的天数之前的文字
+  message_next: days since the last update, the content of the article may be outdated. # 过期提醒的天数之后的文字
+```
+
+###### 文章编辑按钮
+
+```yaml
+post_edit: # 文章编辑按钮
+  # 补充说明：当 post_edit.enable: true 时，文章标题旁边会显示一个编辑按钮，此时点击会跳转到对应的链接去
+  enable: false # 表示是否开启文章的在线编辑
+  # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
+  # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
+  url: # 当前文章在 GitHub 中的目录
+```
+
+###### 文章分页按钮
+
+```yaml
+post_pagination: 1 # 文章分页按钮，可选 1 / 2 / false
+# 补充说明 - 1：1 表示 “下一篇” 按钮导航到旧的文章；2 表示 “下一篇” 按钮导航到新的文章；false 表示关闭分页显示
+# 补充说明 - 2：如果 “下一篇” 的文章的 front-matter 设置 cover: false，那么分页背景就是主题色
+```
+
+##### 4.2.15 博客页脚设置
+
+```yaml
+footer:
+  owner: # 显示博客年份和作者，如 "©2020 - 2024 By yiTuChuan"
+    enable: true # 表示是否显示
+    since: 2024 # 表示开始时间，即站点的起始时间
+  copyright: true # 表示是否显示主题（Butterfly）和框架（Hexo）的版权信息
+  custom_text: # 自定义的页脚文本，支持 HTML，这里也可以写 ICP 备案信息
+```
+
+##### 4.2.16 博客侧边栏设置
+
+> 注意：博客的侧边栏支持[自定义](https://butterfly.js.org/posts/ea33ab97/)
+
+###### 侧边排版
+
+```yaml
+aside: # 侧边排版
+  enable: true # 是否启用侧边栏
+  hide: false # 是否默认隐藏侧边栏
+  button: true # 是否显示切换侧边栏的按钮
+  mobile: true # 是否在移动设备上显示侧边栏
+  position: right # 侧边栏的位置，可选 left / right
+  display: # 是否显示特定的侧边栏设置
+    archive: true # 是否显示归档侧边栏
+    tag: true # 是否显示标签侧边栏
+    category: true # 是否显示分类侧边栏
+  card_author: # 作者信息卡片设置
+    enable: true # 是否显示作者信息卡片
+    description: plant your tree, now! # 作者描述信息
+    button: # 关注按钮设置
+      enable: true # 是否显示关注按钮
+      icon: fab fa-github # 关注按钮图标
+      text: follow me # 关注按钮文字
+      link: https://github.com/Nasir1423 # 关注按钮跳转链接
+  card_announcement: # 公告卡片
+    enable: false # 是否显示公告卡片
+    content: This is my Blog # 公告卡片文字
+  card_recent_post: # 最近文章卡片
+    enable: true # 是否显示最近文章卡片
+    limit: 5 # 最近文章显示的最大数量，如果设置为 0 则表示显示全部
+    sort: date # 最近文章显示的排序依据，可选 date（日期） / updated（更新时间）
+    sort_order: # Don't modify the setting unless you know how it works
+  card_categories: # 分类卡片
+    enable: true # 是否启用
+    limit: 8 # 显示的分类数量限制，如果设置为 0 则表示显示全部
+    expand: none # 是否展开分类列表，可选 none / true / false
+    sort_order: # Don't modify the setting unless you know how it works
+  card_tags: # 标签卡片
+    enable: true # 是否启用
+    limit: 40 # 显示的标签数量限制，如果设置为 0 则表示显示全部
+    color: false # 是否使用彩色标签
+    orderby: random # 标签的排序依据，可选 random / name / length
+    order: 1 # 标签的排序次序，可选 1（升序）/ -1（降序）
+    sort_order: # Don't modify the setting unless you know how it works
+  card_archives: # 归档卡片
+    enable: true # 是否启用
+    type: monthly # 按照年度还是月度归档，可选 yearly / monthly
+    format: MMMM YYYY # 日期格式
+    order: -1 # 归档的排序次序，可选 1（升序）/ -1（降序）
+    limit: 8 # 显示的归档数量限制，如果设置为 0 则表示显示全部
+    sort_order: # Don't modify the setting unless you know how it works
+  card_webinfo: # 网站信息卡片
+    enable: true # 是否启用
+    post_count: true # 是否显示文章数量
+    last_push_date: true # 是否显示最后更新日期
+    sort_order: # Don't modify the setting unless you know how it works
+  card_post_series: # 文章系列卡片
+    enable: true # 是否启用
+    series_title: true # 是否显示系列标题
+    orderBy: "date" # 文章系列的排序依据， 可选 title / date
+    order: -1 # 文章系列的排序次序，可选 1（升序）/ -1（降序）
+```
+
+###### 访问人数
+
+```yaml
+busuanzi: # 访问人数
+  # 补充说明 - 1：busuanzi 是一个开源的网站访问量统计工具，可以统计网站的独立访客数 (UV) 和页面访问量 (PV)。
+  # 它可以方便地集成到你的网站中，帮助你了解网站的访问情况。
+  # 补充说明 - 2：可以通过 CDN.option.busuanzi 配置 busuanzi 的 CDN 链接
+  site_uv: true # 表示是否启用网站独立访客统计
+  site_pv: true # 表示是否启用网站总访问量统计
+  page_pv: true # 表示是否启用页面访问量统计
+```
+
+###### 网页已运行时间
+
+```yaml
+runtimeshow: # 网页已运行时间
+  # 补充说明：网页已运行时间即网页发布时间和当前时间的差值
+  enable: false # 是否启用
+  publish_date: # 网页发布时间，格式为 Month / Day / Year Time 或 Year / Month / Day Time
+  # 发布时间示例：6/7/2018 00:00:00
+```
+
+###### 最新评论
+
+```yaml
+newest_comments: # 最新评论
+  enable: false # 是否启用
+  sort_order: # Don't modify the setting unless you know how it works
+  limit: 6 # 最大显示数量
+  storage: 10 # 缓存时间，单位是分钟，表示在缓存时间内不会调用 API 获取数据
+  avatar: true # 是否显示头像
+```
+
+##### 4.2.17 右下角按钮
+
+```yaml
+translate: # 简繁转换
+  enable: false # 是否启用
+  default: 繁 # 按钮默认显示文字（如果网站是简体，则应设置为 '繁'，否则为 '简'）
+  defaultEncoding: 2 # 网站默认语言，1 表示繁体中文，2 表示简体中文
+  translateDelay: 0 # 延迟时间，即简繁切换的延迟翻译时间
+  msgToTraditionalChinese: "繁" # 文字是简体时，按钮显示的文字
+  msgToSimplifiedChinese: "簡" # 文字是繁体时，按钮显示的文字
+
+readmode: true # 是否启用阅读模式按钮，该按钮只会出现在文章页，点击后进入阅读模式，阅读模式下会去除掉文章外的内容，避免干扰阅读
+
+darkmode: # 夜间模式
+  enable: true # 是否启用
+  button: true # 是否显示右下角的日夜模式切换按钮
+  autoChangeMode: false # 是否允许日夜模式自动切换，可选 1（跟随系统而变化）/ 2（按照配置 start 和 end 进行切换）/ false（取消自动切换）
+  start: # 8，日间模式的开始时间
+  end: # 22，日间模式的结束时间
+
+rightside_scroll_percent: false # 是否在 “回到顶部” 按钮上显示滚动状态百分比
+
+# Don't modify the following settings unless you know how they work (非必要請不要修改 )
+# Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
+# Don't repeat 不要重複
+rightside_item_order: # 右下角按钮排序及是否隐藏
+  enable: false
+  hide: # readmode,translate,darkmode,hideAside，这里的按钮需要通过设置按钮展开
+  show: # toc,chat,comment，这里的按钮默认出现在右下角
+```
 
 ### 5. Hexo 项目的管理
+
+在 [建站步骤-项目部署](#Step6. 项目部署 GitHub Pages) 这一步中，我们将 Hexo 生成的静态文件（位于 `./public` 文件夹中）部署到 GitHub Pages 上。为了对 Hexo 项目进行版本管理，我们需要创建一个单独的仓库，这里我们将其命名为 `<username>.github.io.source.hexo`。以下是具体步骤：
+
+Step1. 初始化 Hexo 项目的 Git 仓库
+
+```bash
+git init
+```
+
+Step2. 移除 Git 缓存中的 butterfly 主题文件夹
+
+```bash
+git rm --cached -r themes/butterfly
+```
+
+Step3. 将 Butterfly 主题仓库添加为当前 Hexo 项目的子模块
+
+```bash
+git submodule add https://github.com/jerryc127/hexo-theme-butterfly.git themes/butterfly
+```
+
+Step4. 暂存所有更改并创建一次提交
+
+```bash
+git add .  
+git commit -m "Remove butterfly theme and add it as a submodule"
+```
+
+Step5. 设置远程仓库并推送到 GitHub
+
+```bash
+git remote add origin https://github.com/<username>/<username>.github.io.source.hexo.git
+git branch -M main     
+git push -u origin main 
+```
+
+> 注意事项
+>
+> - 该过程管理的是 Hexo 项目的源代码，而不是生成的静态文件。静态文件的部署是通过 Hexo 的部署命令完成的。
+> - 将 Butterfly 主题作为 Hexo 项目的一个子模块，实际上这里 Git 仓库保存的是 Butterfly 主题仓库的一个特定的提交。
+
+### 6. Butterfly - 标签外挂 Tag Plugins
+
+标签外挂是 Hexo 独有的在 Markdown 中增强 UI 的语法，不是标准的 Markdown 格式。
+
+#### 6.1 Note
+
+```yaml
+note: # Note (Bootstrap Callout)，可理解为注释块 - 主题配置及用法
+  # Part1. 通用设置
+  style: flat # note 标签的风格，可选 simple / modern / flat / disabled（禁用所有 note 标签的 css 样式）
+  icons: true # note 标签是否显示图标
+  border_radius: 3 # note 标签的圆角
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+  # 补充说明：icons 和 light_bg_offset 只对方法一生效
+
+  # Part2. 用法一
+  # (1) class 【可选】标识，对应 note 标签的不同颜色，可选 default（默认）/ primary / success / info / warning / danger
+  # (2) no-icon 【可选】如果有该项，则表示 note 标签不显示图标，可选 no-icon，默认无该项
+  # (3) style 【可选】样式，对应 note 标签内的不同风格，可选 simple（默认）/ modern / flat / disabled
+  # {% note [class] [no-icon] [style] %}
+  # Any content (support inline tags too.io).
+  # {% endnote %}
+
+  # Part3. 用法二
+  # (1) color 【可选】颜色，可选 default（默认） / blue / pink / red / purple / orange / green
+  # (2) icon 【可选】自定义的 icon，支持 font-awesome 图标，也可以配置 no-icon
+  # (3) style 【可选】样式，对应 note 标签内的不同风格，可选 simple（默认）/ modern / flat / disabled
+  # {% note [color] [icon] [style] %}
+  # Any content (support inline tags too.io).
+  # {% endnote %}
+```
+
+#### 6.2 Gallery Group
+
+```yaml
+# GalleryGroup 相册图库 - 用法（无需主题文件中的配置）
+  # (1) name 图库名字 (2) 图库描述 (3) 相册地址（点击图片后的跳转地址）(4) 图库封面地址（要显示的图片的地址）
+  # <div class="gallery-group-main">
+  # {% galleryGroup name description link img-url %}
+  # {% galleryGroup name description link img-url %}
+  # {% galleryGroup name description link img-url %}
+  # </div>
+```
+
+#### 6.3 Gallery
+
+```yaml
+# Gallery 相册 - 用法（无需主题文件中的配置）
+  # 用法一 - 本地
+  # (1) lazyload【可选】点击按钮加载更多图片，填写 true / false（默认）。
+  # (2) rowHeight【可选】图片显示的高度，如果需要一行显示更多的图片，可设置更小的数字。默认为 220。
+  # (3) limit【可选】每次加载多少张照片。默认为 10。
+  # {% gallery [lazyload],[rowHeight],[limit] %}
+  # markdown 图片格式
+  # {% endgallery %}
+  # 用法二 - 远程拉取
+  # (1) url【必选】识别词，即通过该内容告诉 Butterfly 是远程拉取的方式
+  # (2) link【必选】远程的 json 链接，其类型为 Array<{url, alt?, title?}>
+  # (3) lazyload【可选】点击按钮加载更多图片，填写 true / false（默认）。
+  # (4) rowHeight【可选】图片显示的高度，如果需要一行显示更多的图片，可设置更小的数字。默认为 220。
+  # (5) limit【可选】每次加载多少张照片。默认为 10。
+  # {% gallery url,[link],[lazyload],[rowHeight],[limit] %}
+  # {% endgallery %}
+```
+
+#### 6.4 Tag Hide
+
+```yaml
+# Tag-Hide 隐藏标签（即将一些内容隐藏起来，提供按钮，允许用户点击显示） - 用法（无需主题文件中的配置）
+  # 补充说明：该标签的 content 中不允许有 h1 - h6 等标题，否则会导致渲染异常
+  # 用法一 Inline 
+  # 补充说明：Inline 用于在文本中添加隐藏内容，因此 content 只限文字，同时不能使用英文逗号，可使用 &sbquo; 代替
+  # (1) content【必选】文本内容。
+  # (2) display【可选】按钮显示的文字
+  # (3) bg【可选】按钮的背景颜色
+  # (4) color【可选】按钮文字的颜色
+  # {% hideInline content,display,bg,color %}
+  # 用法二 Block
+  # 补充说明：Block 可以隐藏很多内容，包括图片，代码块等等
+  # {% hideBlock display,bg,color %}
+  # content
+  # {% endhideBlock %}
+  # 用法三 Toggle
+  # 补充说明 - 1：如果你需要展示的内容太多，可以把它隐藏在收缩框里，需要时再把它展开。
+  # 补充说明 - 2：display 不能包含英文逗号，可用 &sbquo; 代替
+  # {% hideToggle display,bg,color %}
+  # content
+  # {% endhideToggle %}
+```
+
+#### 6.5 mermaid
+
+```yaml
+mermaid: # mermaid，see https://github.com/mermaid-js/mermaid
+  # 补充说明：mermaid 标签可以绘制 Flowchart（流程图）、Sequence diagram（时序图 ）、Class Diagram（类别图）、State Diagram（状态图）、Gantt（甘特图）和 Pie Chart（圆形图）
+  # 主题配置
+  enable: false # 是否启用
+  # 内置可选主题: default / forest / dark / neutral
+  theme:
+    light: default
+    dark: dark
+  # 用法
+  # {% mermaid %}
+  # 内容
+  # {% endmermaid %}
+  # 用法示例
+  # {% mermaid %}
+  # pie
+  #     title Key elements in Product X
+  #     "Calcium" : 42.96
+  #     "Potassium" : 50.05
+  #     "Magnesium" : 10.01
+  #     "Iron" :  5
+  # {% endmermaid %}
+```
+
+#### 6.6 Tabs
+
+```yaml
+# Tabs 分页器
+  # (1) Unique name 选项卡块标签的唯一名称，不包含逗号。将用于每个选项卡的 #id 作为前缀，后面加上它们的索引号。
+  # 如果名称中有空格，在生成 #id 时，所有空格将被替换为连字符。该名称仅需在当前文章/页面的 URL 中保持唯一性。
+  # (2) [index] 默认选中的选项卡的索引号。如果未指定，将选择第一个选项卡。如果索引为 -1，则不会选择任何选项卡，
+  # 类似于折叠内容的效果。这是一个可选参数。
+  # (3) [Tab caption] 当前选项卡的标题。如果未指定标题，则使用唯一名称（Unique name）加上选项卡索引（[index]）作为标题。
+  # 如果未指定标题但指定了图标，则标题将为空。
+  # (4) [@icons] FontAwesome 图标名称（完整名称，类似于 'fas fa-font'）。可以包含或不包含空格，例如 'Tab caption @icon' 
+  # 与 'Tab caption@icon' 是相似的。这是一个可选参数。
+  # {% tabs Unique name, [index] %}
+  # <!-- tab [Tab caption] [@icon] -->
+  # Any content (support inline tags too).
+  # <!-- endtab -->
+  # {% endtabs %}
+```
+
+#### 6.7  Button
+
+```yaml
+# Button 按钮
+  # (1) [url]：链接；(2) [text]：按钮文字；(3) [icon]：[可选] 图标
+  # (4) [color]：[可选] 按钮背景顔色(默认 style 时）或 按钮字体和边框顔色(outline 时)，可选 default / blue / pink / red / purple / orange / green
+  # (5) [style]：[可选] 按钮样式 默认实心，可选 outline / 留空
+  # (6) [layout]：[可选] 按钮佈局 默认为 line，可选 block / 留空
+  # (7) [position]：[可选] 按钮位置 前提是设置了 layout 为 block 默认为左边，可选 center / right / 留空
+  # (8) [size]：[可选] 按钮大小，可选 larger / 留空
+  # {% btn [url],[text],[icon],[color] [style] [layout] [position] [size] %
+```
+
+#### 6.8 InlineImg
+
+```yaml
+# inlineImg 内联图片
+  # 补充说明：主题图片默认以'块级元素'显示，通过内联图片可以将图片以'内联元素'显示
+  # [src]：图片链接
+  # [height]：【可选】图片高度限制
+  # {% inlineImg [src] [height] %}
+```
+
+#### 6.9 Label
+
+```yaml
+# label 标签
+  # 补充说明：label 用于给段落文字上样式，同时注意，不要在段落开头使用 label 标签
+  # (1) text 文字
+  # (2) color【可选】背景颜色，可选 default（默认值） / blue / pink / red / purple / orange / green
+  # {% label text color %}
+```
+
+#### 6.10 Timeline
+
+```yaml
+# timeline 时间线
+  # (1) title 标题（时间线或时间线中某个节点的标题）
+  # (2) color 颜色（时间线的颜色），可选 default（默认）/ blue / pink / red / purple / orange / green
+  # {% timeline title,color %}
+  # <!-- timeline title -->
+  # xxxxx
+  # <!-- endtimeline -->
+  # <!-- timeline title -->
+  # xxxxx
+  # <!-- endtimeline -->
+  # {% endtimeline %}
+```
+
+#### 6.11 Flink
+
+```yaml
+# flink 友情链接效果
+  # {% flink %}
+  # - class_name: # 类名
+  #   class_desc: # 类描述
+  #   link_list: # 类链接列表
+  #     - name: # 链接名
+  #       link: # 链接
+  #       avatar: # 链接头像
+  #       descr: # 链接描述
+  #     - xxx
+  # - xxx
+  # {% endflink %}
+```
+
+#### 6.12 abcjs
+
+```yaml
+abcjs: # 乐谱渲染，See https://github.com/paulrosen/abcjs
+  # 主题配置
+  enable: true
+  per_page: true
+  # 用法
+  # {% score %}
+  # 乐谱代码
+  # {% endscore %}
+```
+
+#### 6.13 series
+
+```yaml
+series: # 系列文章
+  # 主题配置
+  enable: true # 是否启用
+  orderBy: "title" # 排序依据，可选 title / data
+  order: 1 # 排序，可选 1（升序） / -1（降序） 
+  number: true
+  # 用法
+  # {% series %}
+  # {% series [series name] %}
+  # 补充说明：series 是文章的一个标识，可以通过 front-matter 的 series 字段给文章添加标识
+  # 如果使用 series 标签插件，则会把相同标识的文章以列表的形式展示；
+  # 如果使用 series 标签外挂，但是不写 series 标识，则默认使用该标签插件所在的文章的 series 标识（即 front-matter 中的配置）
+```
+
+### 7. Butterfly - 主题配置 2
+
+#### 7.1 数学设置
+
+#### 7.2 搜索设置
+
+#### 7.3 分享插件
 
 
 

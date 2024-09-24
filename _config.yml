@@ -113,3 +113,7 @@ deploy: # 项目发布/部署配置，让 Hexo 知道将当前博客项目部署
   type: git
   repo: https://github.com/Nasir1423/Nasir1423.github.io.git
   branch: main
+
+markdown: # 该配置指示 Hexo 支持 KaTex 的数学公式渲染
+  plugins:
+    - '@renbaoshuo/markdown-it-katex'
