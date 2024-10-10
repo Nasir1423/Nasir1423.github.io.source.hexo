@@ -25,6 +25,7 @@ menu: # 注意，这里的菜单指的是导航栏右上角的快速导航
   # Link: /link/ || fas fa-link
   # About: /about/ || fas fa-heart
   首页: / || fas fa-home
+  # 目录 || fa fa-compass:
   时间轴: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
@@ -32,7 +33,7 @@ menu: # 注意，这里的菜单指的是导航栏右上角的快速导航
   #   音乐: /music/ || fas fa-music
   #   照片: /Gallery/ || fas fa-images
   #   电影: /movies/ || fas fa-video
-  友链: /link/ || fas fa-link
+  实用站点: /link/ || fas fa-link
   关于: /about/ || fas fa-heart
 # endregion
 
@@ -150,7 +151,7 @@ post_meta:
 # 3: auto_excerpt (default)
 # false: do not show the article introduction
 index_post_content:
-  method: 3 # 表示主页中文章摘要的显示方式，可选 1 / 2 / 3 / false
+  method: 2 # 表示主页中文章摘要的显示方式，可选 1 / 2 / 3 / false
   # 补充说明：method 取值的具体含义
   # 1 - description，即显示文章描述，即显示文章在自身的 front-matter 中配置的 description 字段作为文章摘要
   # 2 - both，即优先显示 description，没有则显示自动生成的摘要
@@ -207,8 +208,8 @@ reward: # 文章打赏
 toc: # 文章目录，toc 是 table of content 的缩写
   post: true # 表示文章页（layout === post）是否显示目录
   page: false # 表示普通页面（layout === page）是否显示目录
-  number: true # 表示是否显示章节数，即是否显示 1.；1.3；5.1.3 等章节标识
-  expand: true # 表示是否展开目录
+  number: false # 表示是否显示章节数，即是否显示 1.；1.3；5.1.3 等章节标识
+  expand: false # 表示是否展开目录
   style_simple: true # 表示文章页（layout === post）的侧边栏是否打开简洁模式，即侧边栏只显示目录
   scroll_percent: false # 表示是否显示滚动进度百分比
   # 补充说明：可以通过 front-matter 中的特定字段 top_number 和 toc 为特定文章配置目录的显示情况
@@ -808,10 +809,13 @@ google_adsense:
 # 首先需要在相应的搜索引擎管理平台上提交你的网站并进行验证。
 # 补充说明：由于这里使用了 DNS 验证，因此不做配置（即使用 HTML 验证）
 site_verification:
-  # - name: google-site-verification
-  #   content: xxxxxx
+  - name: google-site-verification
+    content: VS0CYuuxqYH1AjmSVIi39UiBz0ubcCCtUtHMiSsRQXA
+  - name: msvalidate.01
+    content: 3C21ED06CE83FA63D0A6E0ADE00F1DEE
   # - name: baidu-site-verification
-  #   content: xxxxxxx
+  #   content: xxxxx
+
 # endregion
 
 # region Beautify/Effect (美化/效果)
@@ -992,7 +996,7 @@ pjax:
   # 当用户点击链接，通过 ajax 更新页面需要变化的部分，然后使用 HTML5 的 pushState 修改浏览器的 URL 地址。
   # 这样可以不用重复加载相同的资源（css / js）， 从而提升网页的加载速度。
   enable: false # 是否启用，Butterfly 的 Pjax 目前仍有一些问题，故不推荐使用
-  exclude:# 用于指定哪些网页不适用 Pjax 技术，即点击该网页会重新加载网站
+  exclude: # 用于指定哪些网页不适用 Pjax 技术，即点击该网页会重新加载网站
     # - xxxx
     # - xxxx
 # endregion
@@ -1106,7 +1110,7 @@ pangu:
 Open_Graph_meta:
   # https://developers.facebook.com/docs/sharing/webmasters/
   enable: true # 是否启用 Open Graph 元标签功能
-  option:# 可选配置项的列表，包含了不同社交平台相关的元标签选项。
+  option: # 可选配置项的列表，包含了不同社交平台相关的元标签选项。
     # twitter 相关配置
     # twitter_card:
     # twitter_image:
@@ -1160,10 +1164,10 @@ CDN:
   # cdnjs_name cdnjs 上的包名
   # cdnjs_file cdnjs 上的文件路径
   # min_cdnjs_file cdnjs 上的文件路径（压缩过的文件）
-  # version	插件版本号
+  # version 插件版本号
   custom_format:
 
-  option:# 自定义 CDN，覆盖原有配置
+  option: # 自定义 CDN，覆盖原有配置
     # abcjs_basic_js:
     # activate_power_mode:
     # algolia_js:

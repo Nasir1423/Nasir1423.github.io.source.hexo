@@ -117,3 +117,8 @@ deploy: # 项目发布/部署配置，让 Hexo 知道将当前博客项目部署
 markdown: # 该配置指示 Hexo 支持 KaTex 的数学公式渲染
   plugins:
     - '@renbaoshuo/markdown-it-katex'
+
+sitemap: # 站点文件（谷歌）
+	path: sitemap.xml
+baidusitemap: # 站点文件（百度）
+	path: baidusitemap.xml
