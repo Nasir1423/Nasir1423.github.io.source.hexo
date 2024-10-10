@@ -1,23 +1,60 @@
-- class_name: 友情链接
-  class_desc: 那些人，那些事
+- class_name: 实用工具
+  class_desc: 前端常用的工具，涵盖设计资源、数据处理等
   link_list:
-    - name: Hexo
-      link: https://hexo.io/zh-tw/
-      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
-      descr: 快速、简单且强大的网志框架
+    - name: RGB Picker
+      link: https://rgbcolorpicker.com/
+      avatar: /images/avatars/rgb_color_picker.svg
+      descr: RGB 颜色选择器
+    - name: UI Gradients
+      link: https://uigradients.com/#CoolSky
+      avatar: https://raw.githubusercontent.com/ghosh/uiGradients/refs/heads/master/static/images/favicon-32x32.png
+      descr: 美丽的颜色渐变
+    - name: Icon Scout
+      link: https://iconscout.com/
+      avatar: /images/avatars/icon_scout.svg
+      descr: 图标、插图、3D 资源和 Lottie 动画
+    - name: JSON Viewer
+      link: https://jsonviewer.stack.hu/
+      avatar: https://raw.githubusercontent.com/devicons/devicon/ca28c779441053191ff11710fe24a9e6c23690d6/icons/json/json-original.svg
+      descr: 友好可读的 JSON
+    - name: Small PDF
+      link: https://smallpdf.com/cn#r=app
+      avatar: /images/avatars/small_pdf.svg
+      descr: 免费的 PDF 编辑集成
 
-- class_name: 网站
-  class_desc: 值得推荐的网站
+- class_name: 前端技术栈
+  class_desc: 前端工作所需要的技术，涵盖前端框架、单元测试、样式预处理、服务端等
   link_list:
-    - name: Youtube
-      link: https://www.youtube.com/
-      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
-      descr: 视频网站
-    - name: Weibo
-      link: https://www.weibo.com/
-      avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
-      descr: 中国最大社交分享平台
-    - name: Twitter
-      link: https://twitter.com/
-      avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
-      descr: 社交分享平台
+    - name: React
+      link: https://zh-hans.react.dev/
+      avatar: /images/avatars/react.svg
+      descr: 三大前端框架之一
+    - name: React Router
+      link: https://reactrouter.com/en/main
+      avatar: https://www.loginradius.com/blog/static/a53096b6796dd3d1e3f3df8bc77a6689/aca38/index.png
+      descr: React 路由管理
+    - name: Redux
+      link: https://cn.redux.js.org/
+      avatar: https://cn.redux.js.org/img/redux.svg
+      descr: React 状态管理
+    - name: MobX
+      link: https://zh.mobx.js.org/README.html
+      avatar: https://zh.mobx.js.org/assets/mobx.png
+      descr: React 状态管理
+    - name: dnd kit
+      link: https://dndkit.com/
+      avatar: /images/avatars/dnd_kit.svg
+      descr: 拖拽排序
+    - name: Recharts
+      link: https://recharts.org/zh-CN/
+      avatar: https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FFISsJ%2FbtquotFH0Kb%2FCKNE6tFezRK7lLkkteWzqk%2Fimg.png
+      descr: 可视化
+    - name: Jest
+      link: https://jestjs.io/zh-Hans/
+      avatar: https://jestjs.io/zh-Hans/img/favicon/apple-touch-icon.png
+      descr: 单元测试
+    - name: Ant Design
+      link: https://ant.design/index-cn
+      avatar: https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg
+      descr: UI 组件库
+
